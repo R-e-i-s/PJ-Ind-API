@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aperture Science | Sobre Nós</title>
+    <link rel="icon" href="assets/logo.svg" />
+    <link rel="stylesheet" href="css/header_footer.css" />
+    <link rel="stylesheet" href="css/cadastro_login.css" />
+    <script src="js/funcoes.js"></script>
+    <!-- Sweet Alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <div class="header">
+      <div class="container">
+        <div class="titulo">
+          <img src="assets/logo.svg" alt="Welcome to Aperture Science" />
+          <h1>
+            Aperture Science <br />
+            <span>Laboratories</span>
+          </h1>
+        </div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobrenos.html">Sobre Nós</a></li>
+          <li><a href="invencoes.html">Nossas Invenções</a></li>
+          <li><a href="#">Onde Estamos</a></li>
+          <li style="cursor: default">|</li>
+          <a href="login.html"><li class="login">Login</li></a>
+        </ul>
+      </div>
+    </div>
+    <!-- FIM DO HEADER -->
+    <!-- BANNER E CADASTRO -->
+    <div class="banner" style="background-image: url(assets/cadastro_bg.svg)">
+      <div class="container">
+        <div class="card">
+          <h2>
+            Seja bem vindo(a), novo(a) integrante da Aperture Science
+            Laboratories
+          </h2>
+          <div class="borda_azul"></div>
+          <h4>
+            Já é um integrante?
+            <a href="login.html"><button class="btnlogin">Login</button></a>
+          </h4>
+          <div class="borda_azul"></div>
+          <span>Nome</span>
+          <input id="nome_input" class="inputtext" type="text" />
+
+          <span>Idade</span>
+          <input id="idade_input" class="inputidade" type="number" />
+
+          <span>Profissão</span>
+          <select id="profissao_input" class="selectcard">
+            <option value="astronauta">Astronauta</option>
+            <option value="olimpico">Atleta Olímpico</option>
+            <option value="heroi">Herói de Guerra</option>
+          </select>
+
+          <span>Email</span>
+          <input id="email_input" class="inputtext" type="email" />
+
+          <span>Senha</span>
+          <input id="senha_input" class="inputtext" type="password" />
+
+          <button id="entrar_btn" onclick="cadastrar()" class="btnentrar">
+            Inscreva-se já!
+          </button>
+          <div id="div_aguardar" class="loading">
+            <img src="assets/loading.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FIM DO BANNER -->
+    <!-- FOOTER -->
+    <section class="footer">
+      <div class="container">
+        <div class="paginas_footer">
+          <ul>
+            <h4>Páginas Iniciais</h4>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="invencoes.html">Nossas Invenções</a></li>
+            <li><a href="sobrenos.html">Sobre Nós</a></li>
+            <li><a href="#">Onde Estamos</a></li>
+          </ul>
+          <ul>
+            <h4>Entre</h4>
+            <li><a href="">Cadastro</a></li>
+            <li><a href="">Login</a></li>
+          </ul>
+        </div>
+        <div class="titulo">
+          <img src="assets/logo.svg" alt="Welcome to Aperture Science" />
+          <h1>
+            Aperture Science <br />
+            <span>Laboratories</span>
+          </h1>
+        </div>
+        <div class="contatenos">
+          <div class="border_cont">
+            <h2>Nos Acompanhe 😁</h2>
+            <div>
+              <a href="https://www.facebook.com/ApSci/" target="_blank"
+                ><img src="assets/facebook-square-brands.svg" alt=""
+              /></a>
+              <a href=""
+                ><img src="assets/instagram-square-brands.svg" alt=""
+              /></a>
+              <a href=""
+                ><img src="assets/twitter-square-brands.svg" alt=""
+              /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FIM FOOTER -->
+  </body>
+</html>
+<script>
+  function cadastrar() {
+    aguardar();
+
+    nome_input.style.borderColor = "rgb(255,100,0)";
+    idade_input.style.borderColor = "rgb(255,100,0)";
+    email_input.style.borderColor = "rgb(255,100,0)";
+    senha_input.style.borderColor = "rgb(255,100,0)";
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var idadeVar = Number(idade_input.value);
+    var profissaoVar = profissao_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+
+    if (
+      nomeVar == "" ||
+      idadeVar == "" ||
+      profissaoVar == "" ||
+      emailVar == "" ||
+      senhaVar == ""
+    ) {
+      swal({
+        title: "Cave Johnson diz: Erro no Cadastro",
+        text: "Complete todos os campos para se cadastrar com sucesso!",
+        icon: "error",
+        button: "Sim, Senhor Johnson",
+      });
+
+      if (nomeVar == "") {
+        nome_input.style.borderColor = "#FF0000";
+      }
+      if (idadeVar == "") {
+        idade_input.style.borderColor = "#FF0000";
+      }
+      if (emailVar == "") {
+        email_input.style.borderColor = "#FF0000";
+      }
+      if (senhaVar == "") {
+        senha_input.style.borderColor = "#FF0000";
+      }
+
+      finalizarAguardar();
+      return false;
+    } else if (idadeVar < 18) {
+      var resto = 18 - idadeVar;
+      swal({
+        title: "Cave Johnson diz: Você tem menos de 18 anos!",
+        text: `Devido a problemas legais, é proibido menores de 18 anos participarem de nossos teste. Favor crescer ${resto} anos`,
+        icon: "error",
+        button: `Crescer ${resto} anos`,
+      }).then((crescer) => {
+        if (crescer) {
+          swal(
+            "Cave Johnson diz: Parabéns!",
+            "Graças a Cave Johnson, você tem 18 anos agora!",
+            "success",
+            {
+              button: "Muito obrigado, Cave Johnson",
+            }
+          );
+          idade_input.value = 18;
+        } else {
+          swal({
+            title: "Cave Jhonson está decepcionado com você!",
+            icon: "warning",
+          });
+        }
+      });
+      finalizarAguardar();
+      return false;
+    }
+    console.log(nomeVar, idadeVar, profissaoVar, emailVar, senhaVar);
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        idadeServer: idadeVar,
+        profissaoServer: profissaoVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          setTimeout(() => {
+            swal({
+              title: "Cave Johnson diz: Cadastrado com Sucesso!",
+              text: "Aguarde enquanto te teleportamos para página de Login!",
+              icon: "success",
+              button: false,
+              closeOnClickOutside: false,
+              closeOnEsc: false,
+            });
+          }, "1000");
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "3500");
+
+          // limparFormulario();
+          // finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+</script>

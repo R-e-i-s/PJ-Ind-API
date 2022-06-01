@@ -1,0 +1,151 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  background-color: #202020;
+  color: #ffffff;
+}
+.container {
+  display: flex;
+}
+.borda_laranja {
+  width: 95%;
+  height: 3px;
+  background-color: rgb(255, 100, 0);
+  outline: 3px solid #0f0f0f;
+  margin: 20px 0px;
+}
+.borda_azul{
+  width: 95%;
+  height: 3px;
+  background-color: #0099ff;
+  outline: 3px solid #0f0f0f;
+  margin: 20px 0px;
+}
+.sobre_invencoes .container {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.bem_vindo {
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  width: 100%;
+  height: 300px;
+  margin: 25px 0px;
+}
+.maisumbv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bemvindotxt {
+  color: #0099ff;
+  width: 60%;
+  border: 5px solid rgb(255, 100, 0);
+  padding: 10px 40px;
+  font-size: 3.5em;
+  text-align: center;
+  font-style: italic;
+  text-shadow: 2px 2px rgb(15, 15, 15);
+  box-shadow: 0px 0px 0px 3px inset rgb(15, 15, 15);
+  outline: 3px solid rgb(15, 15, 15);
+  transition: 0.25s;
+}
+.bemvindotxt:hover {
+  box-shadow: 0px 0px 0px 3px inset rgb(5, 5, 5);
+  outline-color: rgb(5, 5, 5);
+  text-shadow: 4px 4px rgb(5, 5, 5);
+}
+.bemvindoimg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 80%;
+  background-color: #fff;
+  border: 10px solid #fff;
+  margin-top: 20px;
+}
+.bemvindoimg img {
+  width: 60%;
+  height: 100%;
+  margin-right: 10px;
+}
+.bemvindoimg div {
+  width: 40%;
+  height: 100%;
+  background-color: #fff;
+  color: #000;
+}
+.spanBv {
+  font-size: 3em;
+}
+.expl_bv {
+  display: flex;
+  justify-content: space-evenly;
+  width: 95%;
+}
+.expl_bv video {
+  width: 30%;
+  height: 100%;
+  border: 10px solid #fff;
+}
+.expl_bv img{
+  width: 30%;
+  height: 100%;
+  border: 10px solid #fff;
+}
+.txtbv {
+  width: 60%;
+  font-size: 1.2em;
+  border: 3px solid #0099ff;
+  padding: 10px 15px;
+  outline: 3px solid #202020;
+  box-shadow: 0px 0px 0px 3px inset #202020;
+  transition: 0.25s;
+}
+.txtbv:hover {
+  outline: 3px solid rgb(15, 15, 15);
+  box-shadow: 0px 0px 0px 3px inset rgb(15, 15, 15);
+  transition: 0.25s;
+}
+.principal {
+  color: rgb(255, 100, 0);
+  font-size: 1.5em;
+  text-decoration: underline;
+  text-decoration-color: #0099ff;
+}
+.turret {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  width: 95%;
+}
+.turret video {
+  width: 30%;
+  height: 100%;
+  border: 10px solid #fff;
+}
+.txtturret {
+  width: 60%;
+  font-size: 1.2em;
+  border: 3px solid #0099ff;
+  padding: 10px 15px;
+  outline: 3px solid #202020;
+  box-shadow: 0px 0px 0px 3px inset #202020;
+  transition: 0.25s;
+}
+.txtturret:hover {
+  outline: 3px solid rgb(15, 15, 15);
+  box-shadow: 0px 0px 0px 3px inset rgb(15, 15, 15);
+  transition: 0.25s;
+}
+
+.footer{
+  margin-top: 30px;
+}

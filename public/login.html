@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aperture Science | Sobre Nós</title>
+    <link rel="icon" href="assets/logo.svg" />
+    <link rel="stylesheet" href="css/header_footer.css" />
+    <link rel="stylesheet" href="css/cadastro_login.css" />
+    <!-- Sweet Alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="js/funcoes.js"></script>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <div class="header">
+      <div class="container">
+        <div class="titulo">
+          <img src="assets/logo.svg" alt="Welcome to Aperture Science" />
+          <h1>
+            Aperture Science <br />
+            <span>Laboratories</span>
+          </h1>
+        </div>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="sobrenos.html">Sobre Nós</a></li>
+          <li><a href="invencoes.html">Nossas Invenções</a></li>
+          <li><a href="#">Onde Estamos</a></li>
+          <li style="cursor: default">|</li>
+          <a href="#"><li class="login">Login</li></a>
+        </ul>
+      </div>
+    </div>
+    <!-- FIM DO HEADER -->
+    <!-- BANNER E CADASTRO -->
+    <div class="banner" style="background-image: url(assets/login_bg.png)">
+      <div class="container">
+        <div class="card">
+          <h2>Olá de novo, integrante da Aperture Science Laboratories</h2>
+          <div class="borda_azul"></div>
+          <h4>
+            Não é um integrante ainda?
+            <a href="cadastro.html"
+              ><button class="btnlogin">Cadastre-se</button></a
+            >
+          </h4>
+          <div class="borda_azul"></div>
+
+          <span>Email</span>
+          <input id="email_input" class="inputtext" type="email" />
+
+          <span>Senha</span>
+          <input id="senha_input" class="inputtext" type="password" />
+
+          <button id="entrar_btn" onclick="entrar()" class="btnentrar">Entre!</button>
+          <div id="div_aguardar" class="loading">
+            <img src="assets/loading.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FIM DO BANNER -->
+    <!-- FOOTER -->
+    <section class="footer">
+      <div class="container">
+        <div class="paginas_footer">
+          <ul>
+            <h4>Páginas Iniciais</h4>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="invencoes.html">Nossas Invenções</a></li>
+            <li><a href="sobrenos.html">Sobre Nós</a></li>
+            <li><a href="">Onde Estamos</a></li>
+          </ul>
+          <ul>
+            <h4>Entre</h4>
+            <li><a href="">Cadastro</a></li>
+            <li><a href="">Login</a></li>
+          </ul>
+        </div>
+        <div class="titulo">
+          <img src="assets/logo.svg" alt="Welcome to Aperture Science" />
+          <h1>
+            Aperture Science <br />
+            <span>Laboratories</span>
+          </h1>
+        </div>
+        <div class="contatenos">
+          <div class="border_cont">
+            <h2>Nos Acompanhe 😁</h2>
+            <div>
+              <a href="https://www.facebook.com/ApSci/" target="_blank"
+                ><img src="assets/facebook-square-brands.svg" alt=""
+              /></a>
+              <a href=""
+                ><img src="assets/instagram-square-brands.svg" alt=""
+              /></a>
+              <a href=""
+                ><img src="assets/twitter-square-brands.svg" alt=""
+              /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FIM FOOTER -->
+  </body>
+</html>
+
+<script>
+  function entrar() {
+    aguardar();
+
+    email_input.style.borderColor = "rgb(255,100,0)";
+    senha_input.style.borderColor = "rgb(255,100,0)";
+
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+
+    if (emailVar == "" || senhaVar == "") {
+      swal({
+        title: "Cave Johnson diz: Erro no Cadastro",
+        text: "Complete todos os campos para se cadastrar com sucesso!",
+        icon: "error",
+        button: "Sim, Senhor Johnson",
+      });
+      if (emailVar == "") {
+        email_input.style.borderColor = "#FF0000";
+      }
+      if (senhaVar == "") {
+        senha_input.style.borderColor = "#FF0000";
+      }
+      finalizarAguardar();
+      return false;
+    }
+
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!");
+
+        if (resposta.ok) {
+          console.log(resposta);
+
+          resposta.json().then((json) => {
+            console.log(json);
+            console.log(JSON.stringify(json));
+
+            sessionStorage.EMAIL_USUARIO = json.email;
+            sessionStorage.NOME_USUARIO = json.nome;
+            sessionStorage.ID_USUARIO = json.idUsuario;
+
+            setTimeout(() => {
+            swal({
+              title: "Cave Johnson diz: Login Realizado com Sucesso!",
+              text: "Aguarde enquanto te teleportamos para seu próximo destino!",
+              icon: "success",
+              button: false,
+              closeOnClickOutside: false,
+              closeOnEsc: false,
+            });
+          }, "1000");
+
+            setTimeout(function () {
+              window.location = "aperture/usuario.html";
+            }, "3500"); // apenas para exibir o loading
+          });
+        } else {
+          console.log("Houve um erro ao tentar realizar o login!");
+          
+          resposta.text().then((texto) => {
+            swal("Erro ao realizar login", texto, "error")
+            // email_input.style.borderColor = "#ff0000"
+            finalizarAguardar(texto);
+          });
+        }
+      })
+      .catch(function (erro) {
+        console.log(erro);
+      });
+
+    return false;
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>
