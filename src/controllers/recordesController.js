@@ -1,0 +1,60 @@
+var recordesModel = require("../models/recordesModel");
+
+function novoTempo(req, res) {
+  var id = req.body.idUserServer;
+  var segundos = req.body.segundosServer;
+  var tempo = req.body.tempoServer;
+
+  // Validação dos valores
+    if (id == undefined) {
+    res.status(400).send("Seu id está undefined!");
+  } else if (segundos == undefined) {
+    res.status(400).send("Seu segundos está undefined!");
+  } else if (tempo == undefined) {
+    res.status(400).send("Seu tempo está undefined!");
+  } else {
+    // Passar os valores como parâmetro e vá para recordesModel.js
+    recordesModel
+      .novoTempo(id, segundos, tempo)
+      .then(function (resultado) {
+        res.json(resultado);
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        console.log(
+          "\nHouve um erro ao realizar o cadastro! Erro: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
+}
+
+function buscarMedidasEmTempoReal(req, res) {
+  var idAquario = req.params.idAquario;
+
+  console.log(`Recuperando medidas em tempo real`);
+
+  medidaModel
+    .buscarMedidasEmTempoReal(idAquario)
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.status(200).json(resultado);
+      } else {
+        res.status(204).send("Nenhum resultado encontrado!");
+      }
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "Houve um erro ao buscar as ultimas medidas.",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
+module.exports = {
+  novoTempo,
+  buscarMedidasEmTempoReal,
+};

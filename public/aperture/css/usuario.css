@@ -52,3 +52,25 @@ body {
   width: 75%;
   box-shadow: 0px 0px 10px 20px  #0f0f0f;
 }
+.swal-modal{
+  /* background-color: #202020; */
+  border: 5px solid rgb(255, 100, 0);
+  outline: 3px solid rgb(15, 15, 15);
+  box-shadow: inset 0px 0px 0px 3px rgb(15, 15, 15);
+}
+.swal-title{
+  color: #202020;
+}
+.swal-text{
+  color: #202020;
+}
+.swal-button{
+  background-color: #09f;
+  border: 3px solid #09f;
+  color: #202020;
+  transition: .2s;
+}
+.swal-button:hover{
+  background-color: #09f;
+  color: #202020;
+}

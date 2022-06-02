@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="css/usuario.css">
     <link rel="stylesheet" href="css/header_footer_usuario.css">
     <script src="../js/funcoes.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
-  <body onload="limparSudoku(), validarSessao()">
+  <!-- <body onload="limparSudoku(), validarSessao()"> -->
+    <body>
     <div class="header">
       <div class="container">
         <div class="titulo">
@@ -267,6 +269,10 @@
               <span>Tempo</span>
               <span id="span_crono"> 0:00:00</span>
             </div>
+            <button id="btn_cadastrar" onclick="novoTempo()">Cadastrar Tempo!</button>
+            <div id="div_aguardar" class="loading">
+              <img src="../assets/loading.png" alt="">
+            </div>
           </div>
         </div>
       </div>
@@ -292,10 +298,10 @@
   var seg = 0;
   var min = 0;
   var hora = 0;
+  // Variável para saber a velocidade em string
+  var tempo_total = 0;
   // Nosso Cronometro
   function cronometro() {
-    // Variável para saber a velocidade em string
-    var tempo_total = 0;
     segundos_total++;
     seg++;
     if (seg == 60) {
@@ -386,7 +392,66 @@
         }
     }
     if (correto < 1) {
-      recorde();
+      parabens();
     }
+  }
+</script>
+<script>
+  function parabens() {
+    clearInterval(Timer)
+    setTimeout(
+    swal({
+      title: "Cave Johnson diz: Parabéns, você completou o seu teste!",
+      text: "Seu teste de raciocínio lógico foi um sucesso. Caso você queira, seu tempo será anotado para futura análise.",
+      icon: "success",
+      button: "Muito Obrigado, Cave Johnson."
+    }), 500)
+    btn_ver.style.display = "none"
+    btn_pausa.style.display = "none"
+    btn_cadastrar.style.display = "block"
+  }
+  function novoTempo() {
+    div_aguardar.style.display = "flex"
+    btn_cadastrar.style.display = "none"
+    var tempoVar = tempo_total;
+    var segundosVar = Number(segundos_total);
+    var idUserVar = sessionStorage.ID_USUARIO;
+    console.log(tempoVar, segundosVar, idUserVar)
+    // Enviando os valores
+    fetch("/recordes/novoTempo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/recordes.js
+        idUserServer: idUserVar,
+        segundosServer: segundosVar,
+        tempoServer: tempoVar,
+      }),
+    }).then(function (resposta) {
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        setTimeout(() => {
+          swal({
+            title: "Cave Johnson diz: Seu tempo foi cadastrado com Sucesso!",
+            text: "Aguarde enquanto os cientistas descobrem o que fazer com ele.",
+            icon: "success",
+            button: false,
+            closeOnClickOutside: false,
+              closeOnEsc: false,
+          })
+        }, "1000");
+        setTimeout(() => {
+          window.location = "sudoku.html";
+        }, "3500");
+      } else {
+        throw "Houve um erro ao realizar o cadastro!"
+      }
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    })
   }
 </script>
