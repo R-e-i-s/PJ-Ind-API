@@ -4,21 +4,65 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sudoku</title>
-    <link rel="stylesheet" href="../css/sudoku.css" />
-    <style></style>
+    <title>Aperture Science | Teste sua Lógica</title>
+    <link rel="icon" href="../assets/logo.svg" />
+    <link rel="stylesheet" href="css/sudoku.css" />
+    <link rel="stylesheet" href="css/usuario.css">
+    <link rel="stylesheet" href="css/header_footer_usuario.css">
+    <script src="../js/funcoes.js"></script>
   </head>
-  <body onload="limparSudoku()">
-    <div class="container">
+  <body onload="limparSudoku(), validarSessao()">
+    <div class="header">
+      <div class="container">
+        <div class="titulo">
+          <img src="../assets/logo.svg" alt="Welcome to Aperture Science" />
+          <h1>
+            Aperture Science <br />
+            <span>Laboratories</span>
+          </h1>
+        </div>
+        <ul>
+          <li><a href="usuario.html">Principal</a></li>
+          <li><a href="sudoku.html">Teste sua Lógica</a></li>
+          <li><a href="local.html">Onde Estamos</a></li>
+          <li><a href="#">Sair</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="janela">
+      <div class="header-left">
+        <img src="../assets/caveportrait.png" />
+        <div class="hello">
+          <h2>
+            Cave Johnson diz: Seja bem vindo,
+            <span id="b_usuario">usuário</span>!
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div class="container-sudoku">
       <h1>Sudoku Oficial da Aperture Science</h1>
       <div class="sudoku">
+        <div id="placar">
+          <h3>Liderança</h3>
+          <span id="posicao1" class="psc_white">Rafael (0:05:35)</span>
+          <span id="posicao2" class="psc_grey">Rafael (0:05:35)</span>
+          <span id="posicao3" class="psc_white">Rafael (0:05:35)</span>
+          <span id="posicao4" class="psc_grey">Rafael (0:05:35)</span>
+          <span id="posicao5" class="psc_white">Rafael (0:05:35)</span>
+          <span id="posicao6" class="psc_grey">Rafael Cardoso dos Reis (0:05:35)</span>
+          <span id="posicao7" class="psc_white">Rafael (0:05:35)</span>
+          <span id="posicao8" class="psc_grey">Rafael (0:05:35)</span>
+          <span id="posicao9" class="psc_white">Rafael (0:05:35)</span>
+          <span id="posicao10" class="psc_grey">Rafael (0:05:35)</span>
+        </div>
         <div id="fakegrid">
           <h1>?</h1>
         </div>
         <table id="grid" style="display: none;">
           <tr>
             <td id="td0" class="top-left" style="background-image: url(../assets/baseazul.svg); background-position: center; background-size: cover;"><input id="cell-0" type="text" /></td>
-            <td id="td1" class="top" style="background-image: url(../assets/borda2azul.svg); background-position: center; background-size: cover;">
+            <td id="td1" class="top">
               <input id="cell-1" type="text" value="7" disabled />
             </td>
             <td id="td2" class="top-right"><input id="cell-2" type="text" /></td>
@@ -37,13 +81,13 @@
 
             <td id="td6" class="top-left"><input id="cell-6" type="text" /></td>
             <td id="td7" class="top"><input id="cell-7" type="text" /></td>
-            <td id="td8" class="top-right"><input id="cell-8" type="text" /></td>
+            <td id="td8" class="top-right" style="background-image: url(../assets/curva2laranja.svg); background-position: center; background-size: cover;"><input id="cell-8" type="text" /></td>
           </tr>
 
           <tr>
-            <td id="td9" style="background-image: url(../assets/borda1azul.svg); background-position: center; background-size: cover;" class="left"><input id="cell-9" type="text" /></td>
+            <td id="td9" class="left"><input id="cell-9" type="text" /></td>
             <td id="td10" style="background-image: url(../assets/meioazul.svg); background-position: center; background-size: cover;"><input id="cell-10" type="text" /></td>
-            <td id="td11" class="right" style="background-image: url(../assets/borda2azul.svg); background-position: center; background-size: cover;">
+            <td id="td11" class="right">
               <input id="cell-11" type="text" value="4" disabled />
             </td>
 
@@ -56,13 +100,13 @@
             <td id="td15" class="left">
               <input id="cell-15" type="text" value="6" disabled />
             </td>
-            <td id="td16"><input id="cell-16" type="text" /></td>
-            <td id="td17" class="right"><input id="cell-17" type="text" /></td>
+            <td id="td16" style="background-image: url(../assets/meio2laranja.svg); background-position: center; background-size: cover;"><input id="cell-16" type="text" /></td>
+            <td id="td17" class="right" style="background-image: url(../assets/empelaranja.svg); background-position: center; background-size: cover;"><input id="cell-17" type="text" /></td>
           </tr>
 
           <tr>
             <td id="td18" class="bottom-left"><input id="cell-18" type="text" /></td>
-            <td id="td19" class="bottom" style="background-image: url(../assets/borda1azul.svg); background-position: center; background-size: cover;">
+            <td id="td19" class="bottom">
               <input id="cell-19" type="text" value="6" disabled />
             </td>
             <td id="td20" class="bottom-right" style="background-image: url(../assets/meioazul.svg); background-position: top; background-size: cover;"><input id="cell-20" type="text" /></td>
@@ -73,11 +117,11 @@
             </td>
             <td id="td23" class="bottom-right"><input id="cell-23" type="text" /></td>
 
-            <td id="td24" class="bottom-left"><input id="cell-24" type="text" /></td>
+            <td id="td24" class="bottom-left" style="background-image: url(../assets/comeco2laranja.svg); background-position: center; background-size: cover;"><input id="cell-24" type="text" /></td>
             <td id="td25" class="bottom">
               <input id="cell-25" type="text" value="5" disabled />
             </td>
-            <td id="td26" class="bottom-right"><input id="cell-26" type="text" /></td>
+            <td id="td26" class="bottom-right" style="background-image: url(../assets/fimviradolaranja.svg); background-position: center; background-size: cover;"><input id="cell-26" type="text" /></td>
           </tr>
 
           <tr>
@@ -133,11 +177,11 @@
           </tr>
 
           <tr>
-            <td id="td54" class="top-left"><input id="cell-54" type="text" /></td>
+            <td id="td54" class="top-left" style="background-image: url(../assets/fimlaranja.svg); background-position: center; background-size: cover;"><input id="cell-54" type="text" /></td>
             <td id="td55" class="top">
               <input id="cell-55" type="text" value="5" disabled />
             </td>
-            <td id="td56" class="top-right"><input id="cell-56" type="text" /></td>
+            <td id="td56" class="top-right" style="background-image: url(../assets/baselaranja.svg); background-position: center; background-size: cover;"><input id="cell-56" type="text" /></td>
 
             <td id="td57" class="top-left"><input id="cell-57" type="text" /></td>
             <td id="td58" class="top">
@@ -146,15 +190,15 @@
             <td id="td59" class="top-right"><input id="cell-59" type="text" /></td>
 
             <td id="td60" class="top-left" style="background-image: url(../assets/meioazul.svg); background-position: center; background-size: cover;"><input id="cell-60" type="text" /></td>
-            <td id="td61" class="top" style="background-image: url(../assets/borda2azul.svg); background-position: center; background-size: cover;">
+            <td id="td61" class="top">
               <input id="cell-61" type="text" value="6" disabled />
             </td>
             <td id="td62" class="top-right"><input id="cell-62" type="text" /></td>
           </tr>
 
           <tr>
-            <td id="td63" class="left"><input id="cell-63" type="text" /></td>
-            <td id="td64"><input id="cell-64" type="text" /></td>
+            <td id="td63" class="left" style="background-image: url(../assets/empelaranja.svg); background-position: center; background-size: cover;"><input id="cell-63" type="text" /></td>
+            <td id="td64" style="background-image: url(../assets/meiolaranja.svg); background-position: center; background-size: cover;"><input id="cell-64" type="text" /></td>
             <td id="td65" class="right">
               <input id="cell-65" type="text" value="8" disabled />
             </td>
@@ -165,15 +209,15 @@
             <td id="td67"><input id="cell-67" type="text" /></td>
             <td id="td68" class="right"><input id="cell-68" type="text" /></td>
 
-            <td id="td69" class="left" style="background-image: url(../assets/borda1azul.svg); background-position: center; background-size: cover;">
+            <td id="td69" class="left">
               <input id="cell-69" type="text" value="5" disabled />
             </td>
             <td id="td70" style="background-image: url(../assets/meioazul.svg); background-position: center; background-size: cover;"><input id="cell-70" type="text" /></td>
-            <td id="td71" class="right" style="background-image: url(../assets/borda2azul.svg); background-position: center; background-size: cover;"><input id="cell-71" type="text" /></td>
+            <td id="td71" class="right"><input id="cell-71" type="text" /></td>
           </tr>
 
           <tr>
-            <td id="td72" class="bottom-left"><input id="cell-72" type="text" /></td>
+            <td id="td72" class="bottom-left" style="background-image: url(../assets/curva1.svg); background-position: center; background-size: cover;"><input id="cell-72" type="text" /></td>
             <td id="td73" class="bottom"><input id="cell-73" type="text" /></td>
             <td id="td74" class="bottom-right"><input id="cell-74" type="text" /></td>
 
@@ -184,7 +228,7 @@
             <td id="td77" class="bottom-right"><input id="cell-77" type="text" /></td>
 
             <td id="td78" class="bottom-left"><input id="cell-78" type="text" /></td>
-            <td id="td79" class="bottom" style="background-image: url(../assets/borda1azul.svg); background-position: center; background-size: cover;">
+            <td id="td79" class="bottom">
               <input id="cell-79" type="text" value="2" disabled />
             </td>
             <td id="td80" class="bottom-right" style="background-image: url(../assets/fimazul.svg); background-position: center; background-size: cover;"><input id="cell-80" type="text" /></td>
@@ -205,16 +249,22 @@
               Continuar
             </button>
             <button id="btn_rein" class="rein" onclick="reset()">Reiniciar</button>
+            <button id="btn_como" class="comoj">Como Jogar?</button>
           </div>
           <div class="cron">
-            <button
-              id="comecar"
-              onclick="Timer = setInterval(cronometro, 1000), vai()"
-            >
-              Começar!
-            </button>
+            <div id="btn_txt_timer">
+              <h3>
+                Integrantes da Aperture Science devem realizar testes mandatórios de lógica e aptidão para serem permitidos a participar dos testes. Favor concluir este desafio de 1 em 1 mês para manter capacidade de reciocínio lógico. 
+              </h3>
+              <button
+                id="comecar"
+                onclick="Timer = setInterval(cronometro, 1000), vai()"
+              >
+                Começar!
+              </button>
+            </div>
             <div id="div_tempo" style="display: none">
-              <span>Tempo: </span>
+              <span>Tempo</span>
               <span id="span_crono"> 0:00:00</span>
             </div>
           </div>
@@ -228,7 +278,7 @@
   function vai() {
     grid.style.display = "block"
     fakegrid.style.display = "none"
-    comecar.style.display = "none";
+    btn_txt_timer.style.display = "none";
     div_tempo.style.display = "flex";
     btn_div.style.display = "flex";
     for (let i = 0; i <= 80; i++) {
@@ -299,7 +349,7 @@
     limparSudoku();
   }
   function voltar() {
-    comecar.style.display = "block";
+    btn_txt_timer.style.display = "block";
     div_tempo.style.display = "none";
     btn_div.style.display = "none";
   }
@@ -317,12 +367,13 @@
         Number(9),Number(8),Number(4),Number(5),Number(7),Number(1),Number(6),Number(3),Number(2),
         Number(3),Number(6),Number(1),Number(8),Number(9),Number(2),Number(7),Number(5),Number(4),
         Number(8),Number(2),Number(9),Number(7),Number(1),Number(6),Number(3),Number(4),Number(5),
-        Number(6),Number(1),Number(5),Number(9),Number(3),Number(4),Number(2),Number(7),Number(1),
-        Number(7),Number(4),Number(3),Number(2),Number(8),Number(5),Number(7),Number(9),Number(6),
+        Number(6),Number(1),Number(5),Number(9),Number(3),Number(4),Number(2),Number(7),Number(8),
+        Number(7),Number(4),Number(3),Number(2),Number(8),Number(5),Number(1),Number(9),Number(6),
         Number(4),Number(5),Number(7),Number(1),Number(2),Number(9),Number(8),Number(6),Number(3),
         Number(2),Number(3),Number(8),Number(4),Number(6),Number(7),Number(5),Number(1),Number(9),
         Number(1),Number(9),Number(6),Number(3),Number(5),Number(8),Number(4),Number(2),Number(7)
     ]
+    var correto = Number(0);
     for (let i = 0; i < vt_results.length; i++) {
         var celula = document.getElementById("cell-" + i);
         var td = document.getElementById("td" + i)
@@ -331,7 +382,11 @@
         }
         if (vt_results[i] != celula.value) {
           td.style.backgroundColor = "#f00"
+          correto++;
         }
+    }
+    if (correto < 1) {
+      recorde();
     }
   }
 </script>

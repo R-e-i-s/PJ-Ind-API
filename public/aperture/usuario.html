@@ -6,12 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aperture Science | Usuário</title>
     <link rel="icon" href="../assets/logo.svg" />
-    <link rel="stylesheet" href="../css/header_footer.css" />
-    <link rel="stylesheet" href="../css/usuario.css" />
+    <link rel="stylesheet" href="css/header_footer_usuario.css" />
+    <link rel="stylesheet" href="css/usuario.css" />
     <script src="../js/funcoes.js "></script>
   </head>
-  <body>
-    <!-- <body onload="validarSessao()"> -->
+    <body onload="validarSessao()">
+      <div class="header">
+        <div class="container">
+          <div class="titulo">
+            <img src="../assets/logo.svg" alt="Welcome to Aperture Science" />
+            <h1>
+              Aperture Science <br />
+              <span>Laboratories</span>
+            </h1>
+          </div>
+          <ul>
+            <li><a href="usuario.html">Principal</a></li>
+            <li><a href="sudoku.html">Teste sua Lógica</a></li>
+            <li><a href="local.html">Onde Estamos</a></li>
+            <li><a onclick="limparSessao()" style="cursor: pointer;">Sair</a></li>
+          </ul>
+        </div>
+      </div>
     <div class="janela">
       <div class="header-left">
         <img src="../assets/caveportrait.png" />
