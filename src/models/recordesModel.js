@@ -30,13 +30,14 @@ function listar() {
             recordes AS r ON
             u.idUsuario = r.fkUsuario
             order by segundos
+            limit 10
         ;
 `;
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
 }
 
-function buscarMedidasEmTempoReal(idAquario) {
+function melhorTempo(idUsuario) {
   instrucaoSql = "";
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
@@ -48,11 +49,12 @@ function buscarMedidasEmTempoReal(idAquario) {
                     order by id desc`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `select 
-                        temperatura, 
-                        umidade, DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
-                        fk_aquario 
-                        from medida where fk_aquario = ${idAquario} 
-                    order by id desc limit 1`;
+                        tempo,
+                        segundos
+                        from recordes where fkUsuario = ${idUsuario} 
+                        order by segundos 
+                        limit 1;
+    `;
   } else {
     console.log(
       "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
@@ -67,5 +69,5 @@ function buscarMedidasEmTempoReal(idAquario) {
 module.exports = {
   novoTempo,
   listar,
-  buscarMedidasEmTempoReal,
+  melhorTempo,
 };

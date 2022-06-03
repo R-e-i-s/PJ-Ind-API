@@ -12,7 +12,7 @@
     <script src="../js/funcoes.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
-  <body onload="limparSudoku(), validarSessao(), atualizarRecordes()">
+  <body onload="limparSudoku(), validarSessao(), atualizarRecordes(), melhorTempo(Number(sessionStorage.ID_USUARIO))">
     <div class="header">
       <div class="container">
         <div class="titulo">
@@ -38,24 +38,31 @@
             Cave Johnson diz: Seja bem vindo,
             <span id="b_usuario">usuário</span>!
           </h2>
+          <div id="lugar"></div>
         </div>
       </div>
     </div>
     <div class="container-sudoku">
-      <h1>Sudoku Oficial da Aperture Science</h1>
+      <h1 style="text-align: center;">Teste de Pensamento e Raciocínio Lógico <br> Oficial da Aperture Science</h1>
       <div class="sudoku">
-        <div id="placar">
-          <h3>Liderança</h3>
-          <span id="posicao0" class="psc_white"></span>
-          <span id="posicao1" class="psc_grey"></span>
-          <span id="posicao2" class="psc_white"></span>
-          <span id="posicao3" class="psc_grey"></span>
-          <span id="posicao4" class="psc_white"></span>
-          <span id="posicao5" class="psc_grey"></span>
-          <span id="posicao6" class="psc_white"></span>
-          <span id="posicao7" class="psc_grey"></span>
-          <span id="posicao8" class="psc_white"></span>
-          <span id="posicao9" class="psc_grey"></span>
+        <div id="resultados">
+          <div id="div_melhor_proprio">
+            <span id="span_mt">Seu melhor tempo foi:</span>
+            <span id="span_melhor_tempo">-:--:--</span>
+          </div>
+          <div id="placar">
+            <h3>Liderança</h3>
+            <span id="posicao0" class="psc_white"></span>
+            <span id="posicao1" class="psc_grey"></span>
+            <span id="posicao2" class="psc_white"></span>
+            <span id="posicao3" class="psc_grey"></span>
+            <span id="posicao4" class="psc_white"></span>
+            <span id="posicao5" class="psc_grey"></span>
+            <span id="posicao6" class="psc_white"></span>
+            <span id="posicao7" class="psc_grey"></span>
+            <span id="posicao8" class="psc_white"></span>
+            <span id="posicao9" class="psc_grey"></span>
+          </div>
         </div>
         <div id="fakegrid">
           <h1>?</h1>
@@ -321,7 +328,7 @@
       tempo_total = `${hora}:${min}:${seg}`;
     }
     span_crono.innerHTML = tempo_total;
-    console.log(tempo_total);
+    // console.log(tempo_total);
   }
   function pausar() {
     btn_pausa.style.display = "none";
@@ -403,7 +410,7 @@
       title: "Cave Johnson diz: Parabéns, você completou o seu teste!",
       text: "Seu teste de raciocínio lógico foi um sucesso. Caso você queira, seu tempo será anotado para futura análise.",
       icon: "success",
-      button: "Muito Obrigado, Cave Johnson."
+      button: "Muito Obrigado, Cave Johnson.",
     }), 500)
     btn_ver.style.display = "none"
     btn_pausa.style.display = "none"
@@ -454,7 +461,7 @@
     })
   }
 
-  var media = 0;
+  
   function atualizarRecordes() {
     var soma = 0;
 
@@ -467,17 +474,12 @@
         }
 
         resposta.json().then(function (resposta) {
-        console.log("Dados recebidos: ", JSON.stringify(resposta));
+        console.log("Dados recebidos da função listar: ", JSON.stringify(resposta));
         
-          for (let i = 0; i < 10; i++) {
+          for (let i = 0; i < resposta.length; i++) {
             var recorde = resposta[i]
             var posicao = document.getElementById("posicao"+i)
             posicao.innerHTML = (i + 1) + "º - " + recorde.nome + " (" + recorde.tempo + ")"
-          }
-          for (let i = 0; i < resposta.length; i++) {
-            var recorde = resposta[i]
-               soma += recorde.segundos
-               media = soma / resposta.length
           }
         })
       } else {
@@ -488,4 +490,49 @@
       console.log(resposta)
     })
   }
+var bestTempo = 0;
+  function melhorTempo(idUsuario) {
+      fetch(`/recordes/melhorTempo/${idUsuario}`).then(function (resposta) {
+        if (resposta.ok) {
+          console.log(resposta.status)
+          if (resposta.status == 204) {
+            var mlhr_tmp = document.getElementById("span_melhor_tempo")
+              mlhr_tmp.innerHTML = "-:--:--"
+          } else {            
+            resposta.json().then(function (resposta) {
+              console.log("Dados recebidos da função melhorTempo: ", JSON.stringify(resposta));
+              var mlhr_tmp = document.getElementById("span_melhor_tempo")
+              mlhr_tmp.innerHTML = resposta[0].tempo
+              bestTempo = resposta[0].segundos
+            })
+          }
+        } else {
+          throw "Houve um erro na API"
+        }
+      }).catch(function (resposta) {
+        console.log(resposta)
+      })
+  }
+// var bestTempo = 0;
+//   function melhorTempo(idUsuario) {
+//     fetch(`/recordes/melhorTempo/${idUsuario}`)
+
+
+
+
+
+//       .then(function (resposta) {
+//         resposta.json().then(
+//           item=>span_melhor_tempo.innerHTML = (item[0].tempo)
+//           )
+//         if (resposta.ok) {      
+//           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+//         } else {
+//           console.error('Nenhum dado encontrado ou erro na API');
+//         }
+//       })
+//       .catch(function (erro) {
+//         console.error(`Erro na obtenção do último recorde: ${error.message}`);
+//       })
+//   }
 </script>

@@ -44,13 +44,13 @@ function novoTempo(req, res) {
   }
 }
 
-function buscarMedidasEmTempoReal(req, res) {
-  var idAquario = req.params.idAquario;
+function melhorTempo(req, res) {
+  var idUsuario = req.params.idUsuario;
 
-  console.log(`Recuperando medidas em tempo real`);
+  console.log(`Recuperando seu melhor tempo`);
 
-  medidaModel
-    .buscarMedidasEmTempoReal(idAquario)
+  recordesModel
+    .melhorTempo(idUsuario)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado);
@@ -61,7 +61,7 @@ function buscarMedidasEmTempoReal(req, res) {
     .catch(function (erro) {
       console.log(erro);
       console.log(
-        "Houve um erro ao buscar as ultimas medidas.",
+        "Houve um erro ao buscar o melhor recorde.",
         erro.sqlMessage
       );
       res.status(500).json(erro.sqlMessage);
@@ -71,5 +71,5 @@ function buscarMedidasEmTempoReal(req, res) {
 module.exports = {
   novoTempo,
   listar,
-  buscarMedidasEmTempoReal,
+  melhorTempo,
 };
