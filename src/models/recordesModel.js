@@ -2,7 +2,7 @@ var database = require("../database/config");
 
 function novoTempo(id, segundos, tempo) {
   console.log(
-    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():",
+    "ACESSEI O RECORDE MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function novoTempo():",
     id,
     segundos,
     tempo
@@ -66,8 +66,37 @@ function melhorTempo(idUsuario) {
   return database.executar(instrucaoSql);
 }
 
+function quizResultado(passou) {
+  console.log(
+    "ACESSEI O RECORDE MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function quizResultado():",
+    passou
+  );
+
+  // Query do banco
+  var instrucao = `
+      INSERT INTO quiz (resultado) VALUES (${passou});
+  `;
+  return database.executar(instrucao);
+}
+
+function quizPorcentagem() {
+  console.log(
+    "ACESSEI O RECORDE MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function quizPorcentagem()"
+  );
+  var instrucao = `
+        SELECT 
+            ROUND(AVG(resultado),2) AS media, 
+            COUNT(idQuiz) AS qtd 
+        FROM quiz;
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
+
 module.exports = {
   novoTempo,
   listar,
   melhorTempo,
+  quizResultado,
+  quizPorcentagem,
 };

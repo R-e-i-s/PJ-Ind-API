@@ -26,7 +26,7 @@
           <li><a href="usuario.html">Principal</a></li>
           <li><a href="sudoku.html">Teste sua Lógica</a></li>
           <li><a href="local.html">Onde Estamos</a></li>
-          <li><a href="#">Sair</a></li>
+          <li onclick="limparSessao()"><a href="#">Sair</a></li>
         </ul>
       </div>
     </div>
@@ -279,6 +279,10 @@
             <div id="div_aguardar" class="loading">
               <img src="../assets/loading.png" alt="">
             </div>
+            <div id="div_melhor_tempo" style="display: none;">
+              <span id="span_best_tempo">Seu melhor tempo é de: </span>
+              <span id="span_melhorar_tempo">Você foi 10 segundos mais rápido</span>
+            </div>
           </div>
         </div>
       </div>
@@ -293,6 +297,8 @@
     btn_txt_timer.style.display = "none";
     div_tempo.style.display = "flex";
     btn_div.style.display = "flex";
+    btn_ver.style.display = "block"
+    btn_pausa.style.display = "block"
     for (let i = 0; i <= 80; i++) {
       var td = document.getElementById("td" + i)
       td.style.backgroundColor = "#fff"
@@ -364,6 +370,9 @@
     btn_txt_timer.style.display = "block";
     div_tempo.style.display = "none";
     btn_div.style.display = "none";
+    btn_cadastrar.style.display = "none"
+    div_aguardar.style.display = "none"
+    div_melhor_tempo.style.display = "none"
   }
   function limparSudoku() {
     for (let i = 0; i <= 80; i++) {
@@ -415,6 +424,48 @@
     btn_ver.style.display = "none"
     btn_pausa.style.display = "none"
     btn_cadastrar.style.display = "block"
+    div_melhor_tempo.style.display ="flex"
+    if (segundos_total > bestTempo) {
+      let diferenca = segundos_total - bestTempo;
+      let dif_min = 0;
+      let dif_hora = 0;
+      while (diferenca >= 60) {
+        diferenca -= 60;
+        dif_min++
+        if (dif_min >= 60) {
+          dif_hora++
+          dif_min = 0;
+        }
+      }
+      if (dif_min == 0 && dif_hora == 0) {
+        span_melhorar_tempo.innerHTML = `Você foi ${diferenca} segundos mais devagar nesta tentativa!`
+      } else if (dif_hora == 0){
+        span_melhorar_tempo.innerHTML = `Você foi ${dif_min} minutos e ${diferenca} segundos mais devagar nesta tentativa!`
+      } else {
+        span_melhorar_tempo.innerHTML = `Você foi ${dif_hora} horas, ${dif_min} minutos e ${diferenca} segundos mais devagar nesta tentativa!`
+      }
+    } else if (segundos_total < bestTempo) {
+      let diferenca = bestTempo - segundos_total;
+      let dif_min = 0;
+      let dif_hora = 0;
+      while (diferenca >= 60) {
+        diferenca -= 60;
+        dif_min++
+        if (dif_min >= 60) {
+          dif_hora++
+          dif_min = 0;
+        }
+      }
+      if (dif_min == 0 && dif_hora == 0) {
+        span_melhorar_tempo.innerHTML = `Você foi ${diferenca} segundos mais rápido nesta tentativa!`
+      } else if (dif_hora == 0){
+        span_melhorar_tempo.innerHTML = `Você foi ${dif_min} minutos e ${diferenca} segundos mais rápido nesta tentativa!`
+      } else {
+        span_melhorar_tempo.innerHTML = `Você foi ${dif_hora} horas, ${dif_min} minutos e ${diferenca} segundos mais rápido nesta tentativa!`
+      }
+    } else {
+      span_melhorar_tempo.innerHTML = `Você teve o mesmo tempo nesta tentativa que na sua melhor tentativa. Sinceramente parabéns, por alcançar essa grandiosidade.`
+    }
   }
   function novoTempo() {
     div_aguardar.style.display = "flex"
@@ -498,12 +549,15 @@ var bestTempo = 0;
           if (resposta.status == 204) {
             var mlhr_tmp = document.getElementById("span_melhor_tempo")
               mlhr_tmp.innerHTML = "-:--:--"
+              document.getElementById("span_best_tempo").innerHTML = "Você ainda não cadastrou nenhum tempo. Cadastre esse para monitorar o crecimento de suas habilidades!" 
+              document.getElementById("span_melhorar_tempo").style.display = "none"
           } else {            
             resposta.json().then(function (resposta) {
               console.log("Dados recebidos da função melhorTempo: ", JSON.stringify(resposta));
               var mlhr_tmp = document.getElementById("span_melhor_tempo")
               mlhr_tmp.innerHTML = resposta[0].tempo
               bestTempo = resposta[0].segundos
+              document.getElementById("span_best_tempo").innerHTML = "Seu melhor tempo é de: " + resposta[0].tempo
             })
           }
         } else {
@@ -513,26 +567,4 @@ var bestTempo = 0;
         console.log(resposta)
       })
   }
-// var bestTempo = 0;
-//   function melhorTempo(idUsuario) {
-//     fetch(`/recordes/melhorTempo/${idUsuario}`)
-
-
-
-
-
-//       .then(function (resposta) {
-//         resposta.json().then(
-//           item=>span_melhor_tempo.innerHTML = (item[0].tempo)
-//           )
-//         if (resposta.ok) {      
-//           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-//         } else {
-//           console.error('Nenhum dado encontrado ou erro na API');
-//         }
-//       })
-//       .catch(function (erro) {
-//         console.error(`Erro na obtenção do último recorde: ${error.message}`);
-//       })
-//   }
 </script>

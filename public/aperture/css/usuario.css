@@ -57,12 +57,14 @@ body {
   border: 5px solid rgb(255, 100, 0);
   outline: 3px solid rgb(15, 15, 15);
   box-shadow: inset 0px 0px 0px 3px rgb(15, 15, 15);
+  text-align: center;
 }
 .swal-title{
   color: #202020;
 }
 .swal-text{
   color: #202020;
+  text-align: center;
 }
 .swal-button{
   background-color: #09f;

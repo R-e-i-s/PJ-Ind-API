@@ -8,8 +8,12 @@
     <link rel="icon" href="assets/logo.svg" />
     <link rel="stylesheet" href="css/header_footer.css" />
     <link rel="stylesheet" href="css/sobrenos.css" />
+    <script src="js/quiz.js"></script>
   </head>
-  <body>
+  <body
+    onload="quizPorcentagem()"
+    style="background-image: url(assets/bg_pag_grande.svg)"
+  >
     <!-- HEADER -->
     <div class="header">
       <div class="container">
@@ -41,6 +45,7 @@
       </div>
     </section>
     <!-- FIM TITULO -->
+    <div class="borda_azul"></div>
     <!-- TEXTOS -->
     <section id="textos_sobrenos">
       <div class="bloco_texto">
@@ -156,7 +161,45 @@
           viverra venenatis.
         </p>
       </div>
-      <div id="borda_especial" class="borda_azul"></div>
+      <div id="quiz" class="borda_azul"></div>
+      <div class="bloco_texto">
+        <div class="img_texto">
+          <img src="assets/cavejohnsonold.png" alt="" />
+          <h4>
+            Cave Johnson <br />
+            Criador da Aperture Science
+          </h4>
+        </div>
+        <p>
+          <span>Cave Johnson</span> Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit. Morbi a dui hendrerit, bibendum neque ac, congue
+          mauris. Nam egestas dolor orci, fermentum aliquam nulla convallis eu.
+          Quisque felis libero, ultricies ultrices odio in, dignissim egestas
+          augue. Ut id ipsum faucibus, scelerisque dolor sit amet, imperdiet
+          est. Quisque nisl nunc, ultrices at bibendum blandit, facilisis vitae
+          dui. Pellentesque habitant morbi tristique senectus et netus et
+          malesuada fames ac turpis egestas. Cras vel nunc eget mauris interdum
+          vulputate. Fusce vel ligula nec sem feugiat dictum. Orci varius
+          natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+          mus. Fusce eget mauris vitae massa ornare imperdiet. Duis eget eros
+          vel nibh placerat posuere et nec lectus. Curabitur volutpat rhoncus
+          erat, in ullamcorper elit tristique at. Vestibulum ultrices fringilla
+          diam, id facilisis lectus consequat sit amet. Donec sed vehicula
+          tortor, sed rutrum purus. Integer nec rutrum neque. Mauris non quam
+          vitae enim scelerisque mattis. Morbi eu fermentum enim, id consectetur
+          ipsum. Morbi finibus nulla magna, eu molestie elit porttitor et.
+          Curabitur non nisl ultrices, tempor mi nec, venenatis lectus. Nunc
+          mattis ex enim, ut fringilla sem egestas consequat. Morbi porttitor,
+          ex quis auctor accumsan, ipsum magna commodo risus, nec hendrerit
+          lorem libero sit amet neque. Maecenas diam libero, dapibus quis diam
+          id, facilisis mollis leo. Fusce vitae erat molestie, accumsan lectus
+          non, suscipit neque. Ut fermentum in augue sed maximus. Donec odio
+          massa, rhoncus eget libero a, consequat congue turpis. Sed auctor
+          facilisis est, et volutpat nunc fermentum sed. Vivamus interdum ex vel
+          viverra venenatis.
+        </p>
+      </div>
+      <div class="borda_azul"></div>
     </section>
     <!-- FIM TEXTOS -->
     <!-- CARD -->
@@ -173,6 +216,16 @@
               e veja se você tem o que necessita para participar de nossos
               projetos!
             </div>
+            <span
+              >Este teste foi considerado não seguro pela Aperture Science, após
+              todos os integrantes que não foram capazes de realizar o teste com
+              sucesso ficaram imediatamente insanos após terem tantas verdades e
+              segredos sobre si próprio reveladas de uma vez só. Seguir por
+              própria conta e risco!</span
+            >
+            <div id="media_div">
+              Porcentagem de pessoas que passam no teste: 50%
+            </div>
             <button class="btn_card" onclick="pergunta1()">
               Ir Para as Perguntas!
             </button>
@@ -180,28 +233,32 @@
           <div id="pergunta1" class="pergunta" style="display: none">
             <h4>1. Que cor você gostaria que seus olhos fossem?</h4>
             <ul>
-              <li onclick="pergunta2()">Caramelo</li>
-              <li onclick="pergunta2()">Azul</li>
-              <li onclick="pergunta2()">Castanho</li>
-              <li onclick="pergunta2()">Cinza</li>
-              <li onclick="pergunta2()">Verde</li>
-              <li onclick="pergunta2()">Amêndoa</li>
-              <li onclick="pergunta2()">Vermelho</li>
-              <li onclick="pergunta2()">Preto</li>
+              <li onclick="pergunta2(Number(1))">Caramelo</li>
+              <li onclick="pergunta2(Number(1))">Azul</li>
+              <li onclick="pergunta2(Number(0))">Castanho</li>
+              <li onclick="pergunta2(Number(1))">Cinza</li>
+              <li onclick="pergunta2(Number(0))">Verde</li>
+              <li onclick="pergunta2(Number(1))">Amêndoa</li>
+              <li onclick="pergunta2(Number(1))">Vermelho</li>
+              <li onclick="pergunta2(Number(0))">Preto</li>
             </ul>
           </div>
           <div id="pergunta2" class="pergunta" style="display: none">
             <h4>2. Você parece bem-educado para os outros?</h4>
             <ul>
-              <li onclick="pergunta3()">Sim</li>
-              <li onclick="pergunta3()">Não</li>
+              <li onclick="pergunta3(Number(1))">Sim</li>
+              <li onclick="pergunta3(Number(0))">Não</li>
             </ul>
           </div>
           <div id="pergunta3" class="pergunta" style="display: none">
-            <h4>3. Se você pudesse escolher apenas entre sim ou não, mesmo sabendo que sua escolha é uma ilusão e não afetará em absolutamente nada no resultado final, qual você escolheria?</h4>
+            <h4>
+              3. Se você pudesse escolher apenas entre sim ou não, mesmo sabendo
+              que sua escolha é uma ilusão e não afetará em absolutamente nada
+              no resultado final, qual você escolheria?
+            </h4>
             <ul>
-              <li onclick="pergunta4()">Sim</li>
-              <li onclick="pergunta4()">Não</li>
+              <li onclick="pergunta4(Number(1))">Sim</li>
+              <li onclick="pergunta4(Number(0))">Não</li>
             </ul>
           </div>
           <div id="pergunta4" class="pergunta" style="display: none">
@@ -223,15 +280,15 @@
               </li>
               <li><input type="checkbox" /><label for="">Cientistas</label></li>
               <li><input type="checkbox" /><label for="">CEOs</label></li>
-              <button onclick="pergunta5()">Próxima Pergunta</button>
+              <button onclick="pergunta5(Number(1))">Próxima Pergunta</button>
             </ul>
           </div>
           <div id="pergunta5" class="pergunta" style="display: none">
             <h4>5. Você se sente observado?</h4>
             <ul>
-              <li onclick="pergunta6()">Sim</li>
-              <li onclick="pergunta6()">Não</li>
-              <li onclick="pergunta6()">Não tenho certeza</li>
+              <li onclick="pergunta6(Number(1))">Sim</li>
+              <li onclick="pergunta6(Number(0))">Não</li>
+              <li onclick="pergunta6(Number(0.5))">Não tenho certeza</li>
             </ul>
           </div>
           <div id="pergunta6" class="pergunta" style="display: none">
@@ -240,9 +297,11 @@
               recebeu durante o período de testes?
             </h4>
             <ul>
-              <li onclick="pergunta7()">Sim</li>
-              <li onclick="pergunta7()">Não</li>
-              <li onclick="pergunta7()">Uma lesão me impede de lembrar</li>
+              <li onclick="pergunta7(Number(0))">Sim</li>
+              <li onclick="pergunta7(Number(1))">Não</li>
+              <li onclick="pergunta7(Number(0.5))">
+                Uma lesão me impede de lembrar
+              </li>
             </ul>
           </div>
           <div id="pergunta7" class="pergunta" style="display: none">
@@ -251,15 +310,17 @@
               qual seria?
             </h4>
             <ul>
-              <li onclick="final()">
+              <li onclick="final(Number(1))">
                 Regras de Segurança de Ocupação Territorial
               </li>
-              <li onclick="final()">Restrições de Proteção Ambiental</li>
-              <li onclick="final()">Segurança ao Consumidor</li>
-              <li onclick="final()">Todas Alternativas Acima</li>
+              <li onclick="final(Number(1))">
+                Restrições de Proteção Ambiental
+              </li>
+              <li onclick="final(Number(1))">Segurança ao Consumidor</li>
+              <li onclick="final(Number(3))">Todas Alternativas Acima</li>
             </ul>
           </div>
-          <div id="final" class="card_final" style="display: none;">
+          <div id="final_certo" class="card_final" style="display: none">
             <h3>RESULTADO: VOCÊ PASSSOU 🥳🎂!!!</h3>
             <span
               >Parabéns, você foi aprovado para ser o mais novo integrante da
@@ -267,7 +328,23 @@
               tornar um patriota para a nação da ciência!</span
             >
             <button class="btn_card">
-              <a href="cadastro.html"> Cadastrar </a>
+              <a href="cadastro.html#"> Cadastrar </a>
+            </button>
+          </div>
+          <div id="final_errado" class="card_final" style="display: none">
+            <h3>RESULTADO: NÃO APROVADO!!!</h3>
+            <span
+              >Infelizmente, você não foi aprovado para ser um participante nos
+              testes da Aperture Science. Nós ficamos tristes neste resultado,
+              mas provavelmente pouco importa para você, pois provavelmente já
+              chegou no pico de sua insanidade mental. Caso seu cérebro ainda
+              não tenha se transformado em uma poça de gelatina, você poderia
+              tentar refazer o teste, mesmo que as chances de seu resultado ser
+              diferente são quase nulas, além de aumentar a probabilidade de
+              insanidade, pscicose, e morte. Boa sorte!</span
+            >
+            <button onclick="reiniciar(), quizPorcentagem();" class="btn_card">
+              Refazer Teste!
             </button>
           </div>
         </div>
@@ -318,4 +395,55 @@
     </section>
   </body>
 </html>
-<script src="js/quiz.js"></script>
+<script>
+  function quizResultado(passouVar) {
+    fetch("recordes/quizResultado", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/recordes.js
+        passouServer: passouVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          console.log("Resposta do quiz inserida com sucesso no banco");
+        } else {
+          throw "Houve um erro ao realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+  function quizPorcentagem() {
+    fetch("recordes/quizPorcentagem")
+      .then(function (resposta) {
+        if (resposta.ok) {
+          if (resposta.status == 204) {
+            media_div.style.display = "none";
+            throw "Nenhum resultado encontrado";
+          }
+          resposta.json().then(function (resposta) {
+            console.log("Dados recebidos: ", JSON.stringify(resposta));
+            var temp_media = resposta[0].media;
+            console.log(temp_media);
+            var media = temp_media.split(".");
+            console.log("variavel media: " + media[1]);
+            media_div.innerHTML = `Porcentagem de pessoas que passam no teste: ${media[1]}%`;
+          });
+        } else {
+          throw "Houve um erro na API";
+        }
+      })
+      .catch(function (resposta) {
+        console.error(resposta);
+        finalizarAguardar();
+      });
+  }
+</script>

@@ -124,7 +124,7 @@ ul a:active {
   justify-content: space-between;
   width: 70%;
   align-items: baseline;
-  list-style: inside;
+  list-style: inside ;
 }
 .contatenos {
   display: flex;

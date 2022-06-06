@@ -73,8 +73,26 @@ body {
   box-shadow: inset 0px 0px 0px 3px black;
   outline: 3px solid rgb(5, 5, 5);
 }
+#textos_sobrenos{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
 .bloco_texto {
-  width: 100%;
+  width: 80%;
+  /* background-color: #202020; */
+  border: 4px solid rgb(255, 100, 0);
+  outline: 3px solid #0f0f0f;
+  box-shadow: 0px 0px 0px 3px inset #0f0f0f;
+  padding: 20px;
+  transition: 0.25s;
+}
+.bloco_texto:hover{
+  background-color: #202020;
+  box-shadow: 0px 0px 0px 3px inset #050505;
+  outline-color: #050505;
 }
 .img_texto {
   border: 15px double rgb(255, 100, 0);
@@ -120,7 +138,7 @@ body {
 }
 .cardzin h2 {
   color: #0099ff;
-  font-size: 2em;
+  font-size: 2.15em;
   text-decoration: underline;
   padding: 0px 10px;
   text-align: center;
@@ -132,7 +150,23 @@ body {
 }
 .explicacao {
   width: 70%;
-  font-size: 1.7em;
+  font-size: 1.9em;
+  text-align: center;
+}
+.apresentacao span{
+  width: 80%;
+  margin-top: 25px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+.apresentacao span::before{
+  content: "Aviso: ";
+  color: #f00;
+}
+#media_div{
+  width: 80%;
+  margin-top: 20px;
+  font-size: 1.35em;
   text-align: center;
 }
 .btn_card {
@@ -207,7 +241,7 @@ body {
 }
 
 #pergunta4 li:hover {
-  transition: 0;
+  transition: 0s;
   color: rgb(255, 100, 0);
   background-color: #202020;
 }
