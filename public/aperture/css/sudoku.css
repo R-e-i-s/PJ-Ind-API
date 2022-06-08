@@ -35,6 +35,18 @@
   font-size: 1.2em;
   border: 5px solid #050505;
 }
+.teste_txt{
+  padding: 15px 20px;
+  border: 3px solid rgb(255, 100, 0);
+  outline: 3px solid #0f0f0f;
+  box-shadow: 0px 0px 0px 3px inset #0f0f0f;
+  text-align: center;
+  transition: 0.25s;
+}
+.teste_txt:hover{
+  outline: 3px solid #050505;
+  box-shadow: 0px 0px 0px 3px inset #050505;
+}
 #span_mt{
   width: 100%;
   padding: 5px 0px;
@@ -237,6 +249,15 @@ input:focus {
 }
 #btn_txt_timer{
   text-align: center;
+  padding: 10px 5px 15px 5px;
+  border: 3px solid rgb(255, 100, 0);
+  outline: 3px solid #0f0f0f;
+  box-shadow: 0px 0px 0px 3px inset #0f0f0f;
+  transition: 0.25s;
+}
+#btn_txt_timer:hover{
+  outline: 3px solid #050505;
+  box-shadow: 0px 0px 0px 3px inset #050505;
 }
 .loading{
   /* display: flex; */

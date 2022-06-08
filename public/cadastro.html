@@ -27,7 +27,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="sobrenos.html">Sobre Nós</a></li>
           <li><a href="invencoes.html">Nossas Invenções</a></li>
-          <li><a href="#">Onde Estamos</a></li>
+          <li><a href="ondeestamos.html">Onde Estamos</a></li>
           <li style="cursor: default">|</li>
           <a href="login.html"><li class="login">Login</li></a>
         </ul>
@@ -65,7 +65,7 @@
           <input id="email_input" class="inputtext" type="email" />
 
           <span>Senha</span>
-          <input id="senha_input" class="inputtext" type="password" />
+          <input id="senha_input" class="inputtext" type="password" placeholder="8 ou mais caracteres"/>
 
           <button id="entrar_btn" onclick="cadastrar()" class="btnentrar">
             Inscreva-se já!
@@ -86,12 +86,12 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="invencoes.html">Nossas Invenções</a></li>
             <li><a href="sobrenos.html">Sobre Nós</a></li>
-            <li><a href="#">Onde Estamos</a></li>
+            <li><a href="ondeestamos.html">Onde Estamos</a></li>
           </ul>
           <ul>
             <h4>Entre</h4>
-            <li><a href="">Cadastro</a></li>
-            <li><a href="">Login</a></li>
+            <li><a href="cadastro.html">Cadastro</a></li>
+            <li><a href="login.html">Login</a></li>
           </ul>
         </div>
         <div class="titulo">
@@ -108,10 +108,10 @@
               <a href="https://www.facebook.com/ApSci/" target="_blank"
                 ><img src="assets/facebook-square-brands.svg" alt=""
               /></a>
-              <a href=""
+              <a href="https://instagram.com/aperturescience_official?igshid=YmMyMTA2M2Y="
                 ><img src="assets/instagram-square-brands.svg" alt=""
               /></a>
-              <a href=""
+              <a href="https://twitter.com/ApScience?t=j_EBmdXBRL-pFPsOczN6WQ&s=08"
                 ><img src="assets/twitter-square-brands.svg" alt=""
               /></a>
             </div>
@@ -168,7 +168,8 @@
 
       finalizarAguardar();
       return false;
-    } else if (idadeVar < 18) {
+    }
+    if (idadeVar < 18) {
       var resto = 18 - idadeVar;
       swal({
         title: "Cave Johnson diz: Você tem menos de 18 anos!",
@@ -188,13 +189,31 @@
           idade_input.value = 18;
         } else {
           swal({
-            title: "Cave Jhonson está decepcionado com você!",
+            title: "Cave Johnson está decepcionado com você!",
             icon: "warning",
           });
         }
       });
       finalizarAguardar();
       return false;
+    } 
+    if (emailVar.indexOf("@") == -1) {
+      swal({
+        title: "Cave Johnson diz: Email Inválido",
+        text: "Favor inserir um email que exista, se você for inteligente o suficiente para saber o que um email é, é claro.",
+        icon: "error"
+      })
+      finalizarAguardar()
+      return false
+    }
+    if (senhaVar.length < 8) {
+      swal({
+        title: "Cave Johnson diz: Senha Inválido",
+        text: 'Por acaso você não sabe ler? Eu literalmente escrevi ali no campo "8 ou mais caracteres", e mesmo assim você foi incapaz de colocar 8 caracteres no campo de senha. Eu estou extremamente decepcionado com você, possível futuro integrante da Aperture Science.',
+        icon: "error"
+      })
+      finalizarAguardar()
+      return false
     }
     console.log(nomeVar, idadeVar, profissaoVar, emailVar, senhaVar);
     // Enviando o valor da nova input

@@ -3,8 +3,15 @@ body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   background-color: #202020;
   color: #ffffff;
+  background-image: url(../../assets/bg_pag_grande.svg);
 }
-
+.borda_laranja {
+  width: 95%;
+  height: 3px;
+  background-color: rgb(255, 100, 0);
+  outline: 3px solid #0f0f0f;
+  margin: 20px 0px;
+}
 .container {
   display: flex;
 }
@@ -52,6 +59,100 @@ body {
   width: 75%;
   box-shadow: 0px 0px 10px 20px  #0f0f0f;
 }
+
+/* MAIN */
+#pagina{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 80%;
+  margin-bottom: 50px;
+}
+.bv_usuario{
+  padding: 15px 20px;
+  border: 3px solid rgb(255, 100, 0);
+  outline: 3px solid #0f0f0f;
+  box-shadow: 0px 0px 0px 3px inset #0f0f0f;
+  text-align: center;
+  transition: 0.25s;
+}
+.bv_usuario:hover{
+  outline: 3px solid #050505;
+  box-shadow: 0px 0px 0px 3px inset #050505;
+}
+.bomdia_div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  padding: 30px;
+  border: 3px solid #09f;
+  outline: 3px solid #0f0f0f;
+  box-shadow: 0px 0px 0px 3px inset #0f0f0f;
+  transition: 0.25s;
+}
+.bomdia_div:hover, .bomdia_div:hover #data_teste{
+  background-color: #202020;
+  outline: 3px solid #050505;
+  box-shadow: 0px 0px 0px 3px inset #050505;
+}
+.bomdia_div:hover .borda_laranja{
+  outline: 3px solid #050505;
+}
+.txt_boas_vindas{
+  width: 100%;
+  font-size: 1.25em;
+  text-align: center;
+}
+#data_teste{
+  padding: 10px;
+  border: 3px solid #ae02dd;
+  font-size: 2em;
+  outline: 3px solid #0f0f0f;
+  box-shadow: 0px 0px 0px 3px inset #0f0f0f;
+  transition: 0.25s;
+}
+#data_teste:hover{
+  outline: 3px solid #050505;
+  box-shadow: 0px 0px 0px 3px inset #050505; 
+}
+#div_butao{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+#div_butao a{
+  width: 40%;
+}
+#div_butao button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.5em;
+  background-color: #202020;
+  color: #ffffff;
+  border: 3px solid #ae02dd;
+  border-radius: 5px;
+  outline: 3px solid rgb(15, 15, 15);
+  box-shadow: inset 0px 0px 0px 3px rgb(15, 15, 15);
+  cursor: pointer;
+  transition: 0.25s;
+}
+#div_butao button:hover {
+  background-color: rgb(15, 15, 15);
+}
+#div_butao button:active {
+  background-color: rgb(5, 5, 5);
+  outline-color: #050505;
+  box-shadow: inset 0px 0px 0px 3px rgb(5, 5, 5);
+}
+
+/* SWAL */
 .swal-modal{
   /* background-color: #202020; */
   border: 5px solid rgb(255, 100, 0);

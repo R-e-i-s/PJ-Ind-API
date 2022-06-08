@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/ondeestamos.css" />
     <script src="../js/funcoes.js "></script>
   </head>
-  <body onload="validarSessao()">
+  <body onload="validarSessao(), escolherTeste()">
     <div class="header">
       <div class="container">
         <div class="titulo">
@@ -24,7 +24,7 @@
         <ul>
           <li><a href="usuario.html">Principal</a></li>
           <li><a href="sudoku.html">Teste sua Lógica</a></li>
-          <li><a href="local.html">Onde Estamos</a></li>
+          <li><a href="ondeestamos.html">Onde Estamos</a></li>
           <li><a onclick="limparSessao()" style="cursor: pointer">Sair</a></li>
         </ul>
       </div>
@@ -40,6 +40,73 @@
         </div>
       </div>
     </div>
-    <div id="pagina"></div>
+    <main id="pagina">
+      <h1 class="bv_usuario" style="margin-bottom: 0;">Onde Estamos</h1>
+      <div class="div_imagens">
+        <img src="../assets/aperture_building.png" alt="" />
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2803357.662466828!2d-89.16933262545977!3d46.67309249167624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4d56df613f85348f%3A0x7d9881c7f307b3b8!2sPen%C3%ADnsula%20Superior%2C%20MI%2C%20EUA!5e0!3m2!1spt-BR!2sbr!4v1654619728530!5m2!1spt-BR!2sbr"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+      <div class="txt_oe">
+        Nós, da Aperture Science, estamos localizados na Península Superior do
+        Estado de Michigan, nos Estados Unidos da América. É lá onde todos os
+        nossos testes e nossa administração é realizada, e é onde VOCÊ vai
+        quando chegar a sua hora de nos
+        <div class="img_oe float_r">
+          <img src="../assets/theshaft.jpg" alt="" /><span
+            >Bata 3 vezes na porta e responda a pergunta "O que fazer quando a
+            vida te dá limões?" com "Não faça limonada! Devolva os limões para a
+            vida, e derrube a casa da vida usando seus próprios limões!". Com
+            isso, você pode entrar na Aperture Science de maneira segura e
+            cautelosa, sem se preoucupar com forças externas (FBI, OSHA, ATF,
+            etc.).</span
+          >
+        </div>
+        ajudar a revolucionar o campo de ciências aplicadas. E quem sabe
+        finalmente ganhar o prêmio de melhor empresa de ciências aplicadas do
+        ano, ao invés dos juízes derem para a Black Mesa novamente, mesmo eles
+        não fazendo nada mais inovador que uma pilha usando batatas. E eu tenho
+        quase certeza que eles começaram a roubar nossa tecnologia. Acredita
+        nisso? Provavelmente vou ter que demitir cada um dos meus cientistas
+        para ter certeza que esse prédio não seja contaminado com o cheiro
+        horrível que emana de qualquer um que entre em contato com a Black Mesa.
+        Me dá repulsão, sinceramente. Mas não é isso que nós viemos falar sobre,
+        não é? E sim da grande Aperture Science, e onde ela está! <br /><br />
+
+        Os laboratórios da Aperture Science estão localizados dentro de uma
+        grande mina de sal, onde todos os nossos testes são realizados com total
+        discreção do mundo externo, além de nos dar total liberdade para
+        <div class="img_oe float_l">
+          <img src="../assets/jornal.jpg" alt="" /><span
+            >Folha de jornal do dia da aquisição da mina de sal por Cave
+            Johnson.
+          </span>
+        </div>
+        construir em qualquer direção que nós quisermos! Usamos gigantes esferas
+        de asbesto para construir nossas pistas de treinamento, pois asbesto é o
+        que mais usamos na Aperture Science, desde material de construção, até a
+        realização de testes para conseguir fazer abestos líquido se comportar
+        como sangue, para finalmente poder dar para alguém a capacidade de ter
+        seu corpo sendo corrido em apenas asbesto. Onde eu estava mesmo? Ah é! A mina! Então, nossa mina é gigante, sério. Tivemos que fechar alguns pontos dela por causa de experimentos que não tiveram sucesso, como os experimentos dos Homes-Louva-Deus.<span id="span_prof"></span>
+      </div>
+    </main>
   </body>
 </html>
+<script>
+  function escolherTeste() {
+    var profissao = sessionStorage.PROFISSAO_USUARIO
+    if (profissao == "astronauta") {
+      span_prof.innerHTML = " Mas isso não importa, não é, astronauta? Estou vendo sua ficha aqui, e graças a você ser um astronauta, iremos te encaminhar para testes com o Dispositivo de Portais Portátil da Aperture Science, pois seu fundo de astronauta deve ajudar na realização dos testes."
+    }
+    if (profissao == "olimpico") {
+      span_prof.innerHTML = " Mas isso não importa, não é, atleta olímpico? Estou vendo sua ficha aqui, e graças a você ser um atleta olímpico, eu, Cave Johnson, estou pessoalmente te enviando para testar os nossos novos Gels de Mobilidade: o gel de propulsão, e o gel de repulsão. Espero que você goste de ir rápido e pular bem alto, pois você vai fazer isso bastante!"
+    }
+    if (profissao == "heroi") {
+      span_prof.innerHTML = " Mas isso não importa, não é, herói de guerra? Calma, você é um herói de guerra? Neste caso, importa sim, pois seu primeiro teste com novo integrante da Aperture Science vai ser receber uma metralhadora e ir onde os Homens-Louva-Deus estão localizados. Sério, por favor, faça isso. Nós precisamos daquele espaço para testes de novo."
+    }
+  }
+</script>

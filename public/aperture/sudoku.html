@@ -25,7 +25,7 @@
         <ul>
           <li><a href="usuario.html">Principal</a></li>
           <li><a href="sudoku.html">Teste sua Lógica</a></li>
-          <li><a href="local.html">Onde Estamos</a></li>
+          <li><a href="ondeestamos.html">Onde Estamos</a></li>
           <li onclick="limparSessao()"><a href="#">Sair</a></li>
         </ul>
       </div>
@@ -43,7 +43,7 @@
       </div>
     </div>
     <div class="container-sudoku">
-      <h1 style="text-align: center;">Teste de Pensamento e Raciocínio Lógico <br> Oficial da Aperture Science</h1>
+      <h1 class="teste_txt">Teste de Pensamento e Raciocínio Lógico <br> Oficial da Aperture Science</h1>
       <div class="sudoku">
         <div id="resultados">
           <div id="div_melhor_proprio">
@@ -257,7 +257,7 @@
               Continuar
             </button>
             <button id="btn_rein" class="rein" onclick="reset()">Reiniciar</button>
-            <button id="btn_como" class="comoj">Como Jogar?</button>
+            <button id="btn_como" class="comoj" onclick="dica()">Como Jogar?</button>
           </div>
           <div class="cron">
             <div id="btn_txt_timer">
@@ -365,6 +365,14 @@
     clearInterval(Timer);
     voltar();
     limparSudoku();
+  }
+  function dica() {
+    swal({
+      title: "Cave Johnson diz: Me desculpa amigo, mas Cave Johnson não guia ninguém de mãozinha dada!",
+      text: "O máximo que eu posso te dizer é: Pense Com Portais 😉.",
+      icon: "warning",
+      button: "Muito Obrigado, Cave Johnson",
+    })
   }
   function voltar() {
     btn_txt_timer.style.display = "block";

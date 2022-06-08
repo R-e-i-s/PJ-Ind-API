@@ -10,24 +10,26 @@
     <link rel="stylesheet" href="css/usuario.css" />
     <script src="../js/funcoes.js "></script>
   </head>
-    <body onload="validarSessao()">
-      <div class="header">
-        <div class="container">
-          <div class="titulo">
-            <img src="../assets/logo.svg" alt="Welcome to Aperture Science" />
-            <h1>
-              Aperture Science <br />
-              <span>Laboratories</span>
-            </h1>
-          </div>
-          <ul>
-            <li><a href="usuario.html">Principal</a></li>
-            <li><a href="sudoku.html">Teste sua Lógica</a></li>
-            <li><a href="local.html">Onde Estamos</a></li>
-            <li><a onclick="limparSessao()" style="cursor: pointer;">Sair</a></li>
-          </ul>
+  <body
+    onload="validarSessao(), formatarData(sessionStorage.DATA_CRIACAO_USUARIO)"
+  >
+    <div class="header">
+      <div class="container">
+        <div class="titulo">
+          <img src="../assets/logo.svg" alt="Welcome to Aperture Science" />
+          <h1>
+            Aperture Science <br />
+            <span>Laboratories</span>
+          </h1>
         </div>
+        <ul>
+          <li><a href="usuario.html">Principal</a></li>
+          <li><a href="sudoku.html">Teste sua Lógica</a></li>
+          <li><a href="ondeestamos.html">Onde Estamos</a></li>
+          <li><a onclick="limparSessao()" style="cursor: pointer">Sair</a></li>
+        </ul>
       </div>
+    </div>
     <div class="janela">
       <div class="header-left">
         <img src="../assets/caveportrait.png" />
@@ -39,5 +41,78 @@
         </div>
       </div>
     </div>
+    <main id="pagina">
+      <h1 class="bv_usuario">Olá, novo integrante da Aperture Science!</h1>
+      <div class="bomdia_div">
+        <div class="txt_boas_vindas">
+          Bom dia, astronauta, atleta olímpico ou herói de guerra, Cave Johnson
+          te dá suas boas vindas para a Aperture Science Laboratories, a maior e
+          mais importante e mais honesta (ênfase em honesta) empresa de ciências
+          aplicadas do mundo inteiro! Então, nós temos duas notícias, uma boa e
+          uma ruim. A ruim é que infelizmente temos está cada vez mais difícil
+          encontrar integrantes para ajudar a nação da ciência a realizar os
+          testes para ter um avanço significativo no campo científico, graças a
+          todos os processos que nós estivemos recebendo. E a falta de dinheiro.
+          E os custos de manutenção. E os Homens-Louva-Deus. Mas a boa notícia,
+          é que VOCÊ vai ajudar a realizar esse avanço, sendo um integrante
+          oficial da Aperture Science. Ao ler isto, você imediatamente aceita
+          fazer parte dos nossos testes, com seu primeiro teste oficial como
+          novo integrante da Aperture Science sendo no dia:
+        </div>
+        <h2 id="data_teste"></h2>
+        <div class="txt_boas_vindas">
+          Nós da Aperture Science estamos ansiosos para pode testar com você, e
+          finalmente realizar o grande avanço científico que vai nos garantir a
+          honra para a nação da ciência, sem falar das diversas verbas
+          governamentais, é claro. E poder olhar para a cara dos idiotas da
+          Black Mesa e rir na cara deles. Muito Obrigado, novo integrante.
+        </div>
+        <div class="txt_boas_vindas">
+          Enquanto você espera para chegar a grandiosa data, que tal dar uma
+          olhada no Teste de Pensamento e Raciocínio Lógico Oficial da Aperture
+          Science, ou você poderia ver sobre onde nós estamos, e saber um pouco
+          mais sobre onde será feito seu período de testes.
+        </div>
+        <div class="borda_laranja"></div>
+        <div id="div_butao">
+          <a href="sudoku.html"><button>Teste de Pensamento e <br> Raciocínio Lógico</button></a>
+          <a href="ondeestamos.html"><button>Onde Estamos</button></a>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
+<script>
+  function formatarData(data) {
+    var dt_criacao = data.split("T")[0];
+    dt_criacao = dt_criacao.split("-");
+    dt_criacao = `${dt_criacao[2]}/${dt_criacao[1]}/${dt_criacao[0]}`;
+    console.log(dt_criacao);
+    dt_criacao = dt_criacao.split("/");
+    var dia = Number(dt_criacao[0]);
+    var mes = Number(dt_criacao[1]);
+    var ano = Number(dt_criacao[2]);
+    dia += 0;
+    mes++;
+    if (mes > 12) {
+      mes = 1;
+      ano++;
+    }
+    if (mes == 2 && dia > 27) {
+      dia = 28;
+    }
+    if (mes == 4 && dia == 31) {
+      dia = 30;
+    }
+    if (mes == 6 && dia == 31) {
+      dia = 30;
+    }
+    if (mes == 9 && dia == 31) {
+      dia = 30;
+    }
+    if (mes == 11 && dia == 31) {
+      dia = 30;
+    }
+    data_teste.innerHTML = dia + "/" + mes + "/" + ano;
+  }
+</script>

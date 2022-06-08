@@ -88,6 +88,7 @@ body {
 .expl_bv {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   width: 95%;
 }
 .expl_bv video {
@@ -105,14 +106,15 @@ body {
   font-size: 1.2em;
   border: 3px solid #0099ff;
   padding: 10px 15px;
-  outline: 3px solid #202020;
-  box-shadow: 0px 0px 0px 3px inset #202020;
+  outline: 3px solid #0f0f0f;
+  box-shadow: 0px 0px 0px 3px inset #0f0f0f;
   transition: 0.25s;
 }
 .txtbv:hover {
-  outline: 3px solid rgb(15, 15, 15);
-  box-shadow: 0px 0px 0px 3px inset rgb(15, 15, 15);
+  outline: 3px solid #050505;
+  box-shadow: 0px 0px 0px 3px inset #050505;
   transition: 0.25s;
+  background-color: #202020;
 }
 .principal {
   color: rgb(255, 100, 0);
@@ -124,6 +126,7 @@ body {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-evenly;
+  align-items: center;
   width: 95%;
 }
 .turret video {
@@ -136,14 +139,15 @@ body {
   font-size: 1.2em;
   border: 3px solid #0099ff;
   padding: 10px 15px;
-  outline: 3px solid #202020;
-  box-shadow: 0px 0px 0px 3px inset #202020;
+  outline: 3px solid #0f0f0f;
+  box-shadow: 0px 0px 0px 3px inset #0f0f0f;
   transition: 0.25s;
 }
 .txtturret:hover {
-  outline: 3px solid rgb(15, 15, 15);
-  box-shadow: 0px 0px 0px 3px inset rgb(15, 15, 15);
+  outline: 3px solid #050505;
+  box-shadow: 0px 0px 0px 3px inset #050505;
   transition: 0.25s;
+  background-color: #202020;
 }
 
 .footer{

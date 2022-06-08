@@ -1,4 +1,53 @@
-#pagina{
-    width: 80%;
+.div_imagens {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  height: 310px;
+  background-color: black;
+  border: 3px solid #fff;
+  padding: 20px;
 }
-
+.div_imagens img, .div_imagens iframe {
+  width: 48%;
+  height: 100%;
+  border: 3px solid #fff;
+}
+.txt_oe{
+    width: 85%;
+    padding: 15px 2.5%;
+    border: 3px solid #ae02dd;
+    outline: 3px solid #0f0f0f;
+    box-shadow: inset 0px 0px 0px 3px #0f0f0f;
+    font-size: 1.4rem;
+    transition: 0.25s;
+    text-align: justify;
+}
+.txt_oe:hover{
+    background-color: #202020;
+    outline: 3px solid #050505;
+    box-shadow: inset 0px 0px 0px 3px #050505;
+}
+.img_oe {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    margin: 10px;
+    border: 4px solid #09f;
+    text-align: start;
+}
+.float_l{
+    float: left;
+}
+.float_r{
+    float: right;
+}
+.img_oe img{
+    width: 100%;
+    border-bottom: 4px solid #09f;
+}
+.img_oe span{
+    padding: 10px;
+    font-size: .7em;
+    text-align: start;
+}
