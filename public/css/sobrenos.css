@@ -83,6 +83,7 @@ body {
 .bloco_texto {
   width: 80%;
   /* background-color: #202020; */
+  font-size: 1.08rem;
   border: 4px solid rgb(255, 100, 0);
   outline: 3px solid #0f0f0f;
   box-shadow: 0px 0px 0px 3px inset #0f0f0f;
@@ -95,18 +96,31 @@ body {
   outline-color: #050505;
 }
 .img_texto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
   border: 15px double rgb(255, 100, 0);
   float: left;
   height: 400px;
   margin: 0px 30px 10px 60px;
 }
-.img_texto img {
+.img_texto div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   height: 80%;
   border-bottom: 5px solid rgb(255, 100, 0);
 }
+
 .img_texto h4 {
+  width: 100%;
   height: 20%;
   margin: 5px;
+  font-size: 1.5rem;
+  text-align: center;
 }
 .bloco_texto p {
   font-size: 1.3em;

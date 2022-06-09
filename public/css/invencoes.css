@@ -153,3 +153,6 @@ body {
 .footer{
   margin-top: 30px;
 }
+.highlight{
+  text-decoration: line-through 110% #fff;
+}
